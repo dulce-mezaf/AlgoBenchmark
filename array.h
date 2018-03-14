@@ -18,7 +18,7 @@ public:
 		myarray = new T[size];
 	}
 
-	//fill the array up:) 
+	//fill the array up 
 	void setArray(int elem, T val) {
 		myarray[elem] = val; 
 	}

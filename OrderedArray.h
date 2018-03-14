@@ -17,7 +17,7 @@ public:
 	
 	//constructor for this class 
 	//actually think that int elem is useless in this format
-	OrderedArray(int elem, T val){
+	OrderedArray(T val){
 		//creating an array with cont numbers 
 		for (int i =0; i<this->size; val = val+1){
 				this ->myarray[i] = val; 
