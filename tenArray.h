@@ -5,11 +5,9 @@
 
 
 template<typename T>
-class tenArray : public Array<T>
-	{
+class tenArray{
 
 	public:
-
 		// Clone function for Prototype design pattern
 		Array<T>* Clone()
 		{
@@ -18,6 +16,7 @@ class tenArray : public Array<T>
 
 		// constructor for 10 array
 		tenArray(int size){
+			size = _size;
 			//seed to be used with time
 			srand(time(NULL)); 
 
@@ -27,42 +26,44 @@ class tenArray : public Array<T>
 
 			for (int i = 0; i < size; i++, val++)
 				// Initialize an ordered array first.
-				this->arr[i] = value;
+				this->myarray[i] = value;
 
 			for (int i = 0; i < cap; i++)
 			{
 				// shuffle 10% of the array
 				int randIndex = rand() % newSize;
-				Swap(i, randIndex);
+				swap(i, randIndex);
 			}
 		}
 
 		// destructor will delete array from memory
 		~tenArray(){
-			delete this->arr;
+			delete this->myarray;
 		}
 
 		// Outputs the contents of the array to the console.
 		void displayArray(){
 			for (int i = 0; i < size; i++)
-				std::cout << this->arr[i] << std::endl;
+				cout << this->myarray[i] << endl;
 		}
 
 
 		// Public Getter for the array's data
 		T* getData(){
-			return this->arr;
+			return this->myarray;
 		}
 
 	private:
 		// array's data
-		T* arr;
+		T* myarray;
+
+		int size = 0;
 
 		// Swap function used for shuffling the array data
 		void swap(int i, int j){
 			T temp;
-			temp = this->arr[i];
-			this->arr[i] = this->arr[j];
-			this->arr[j] = temp;
+			temp = this->myarray[i];
+			this->myarray[i] = this->myarray[j];
+			this->myarray[j] = temp;
 		}
 };

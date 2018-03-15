@@ -7,6 +7,7 @@
 #include "reverseArray.h"
 #include "mergeSort.h"
 #include "tenArray.h"
+#include "shuffledArray.h"
 #include "array.h"
 
 
@@ -467,7 +468,23 @@ int main() {
 //bubbleSort(array1, 100);
 
 reverseArray<int> *revAr =  new reverseArray<int>(5);
+cout << "reversed Array:"<<endl;
 revAr->displayArray();
+
+cout << "ordered Array:" <<endl;
+OrderedArray<int> *ordAr = new OrderedArray<int>(5);
+ordAr->coutArray();
+
+cout << "shuffled Array:" << endl;
+shuffledArray<int> *shuffAr = new shuffledArray<int>(5);
+shuffAr->displayShuffledArray();
+
+//cout << "Ten Array:" << endl;
+//tenArray<int> *tenAr = new tenArray<int>(5);
+//tenAr->displayArray();
+
+
+
 
 threeSorts<int> *sorter = new threeSorts<int>();
 sorter->bubbleSort(revAr->getData(), 5);

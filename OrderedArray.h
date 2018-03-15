@@ -31,9 +31,9 @@ public:
 	
 	//for testing purposes I want to see this array
 	void coutArray(){
-		for (int i = 0; i<size, i++){
+		for (int i = 0; i < size; i++) {
 			cout << this->myarray[i] << endl; 
 		}
-		cout << "This is your ordered array." << endl; 
+		//cout << "This is your ordered array." << endl; 
 	}
 };
