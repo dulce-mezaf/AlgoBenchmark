@@ -2,11 +2,11 @@
 using namespace std; 
 
 class quickSort {
-	//void quickSort() {
+	void quickSort() {
 
-	//}
-	//void quick();
-	//void swap(T* arr, int i, int j);
+	}
+	void quick();
+	void swap(T* arr, int i, int j);
 };
 //function prototypes --they are templates 
 template <class T> 

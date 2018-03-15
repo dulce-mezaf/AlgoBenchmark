@@ -5,7 +5,8 @@ using namespace std;
 //3 sorts insert, selection and bubble
 template <class T> 
 class threeSorts{
-	void bubbleSort(T* arr, int size); 
+public:
+	virtual void bubbleSort(T* arr, int size); 
 	void insertionSort(T* arr, int size);
 	void selectionSort(T* arr, int size);
 	void swap(T* arr, int i, int j);
@@ -28,7 +29,7 @@ void threeSorts<T>::bubbleSort(T* arr, int size){
 	for (i=0; i<size-1; i++){
 		for (j= 0; j<size-i-1; j++){
 			if (arr[j]>arr[j+1]){
-				swap(&arr[j],&arr[j+1]);
+				swap(arr,j,j+1);
 			}
 		}
 	
@@ -57,7 +58,7 @@ template <typename T>
 void threeSorts<T>::selectionSort(T* arr, int size){
 	int i,j, min; 
 	
-	for (i=0; i < size-1; i++){
+	for (i=0; i < (size-1); i++){
 		min = i; 
 		for (j = i+1; j < size ; j++){
 			if (arr[j] < arr[min]){

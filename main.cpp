@@ -2,12 +2,12 @@
 #include<iostream>
 #include<chrono>
 #include<ctime>
-#include "array.h"
 #include "threeSorts.h"
 #include "OrderedArray.h"
 #include "reverseArray.h"
 #include "mergeSort.h"
 #include "tenArray.h"
+#include "array.h"
 
 
 /****
@@ -47,6 +47,7 @@ reverse array that I need to fix, but I am not sure what it is that it is asking
 using namespace std;
 
 int main() {
+/******************************************************************	
 	//clock 
 	chrono::time_point<chrono::system_clock> start, end;
 
@@ -79,6 +80,7 @@ int main() {
 		badSize = true;
 
 		}*/
+	/*************
 		//then asks for array type
 		int arrayType;
 		cout << "Select the type of array you want to sort:" << endl;
@@ -323,6 +325,7 @@ int main() {
 			if (arrayType == 1) {
 				cout << size << arrayType << endl;
 				//start = chrono::system_clock::now();
+				//mergeSort<array, array 
 				//template<typename T>
 				//bubbleSort(OrderedArray, size);
 				//end = chrono::system_clock::now();
@@ -366,6 +369,7 @@ int main() {
 			else if (arrayType == 4) {
 				cout << size << arrayType << endl;
 				//start = chrono::system_clock::now();
+				//mergeSort<T>::mergesort(T* arr, T* aux, int lo, int hi);
 				//template<typename T>
 				//void threeSorts::bubbleSort(tenArray, size);
 				//end = chrono::system_clock::now();
@@ -387,6 +391,7 @@ int main() {
 			if (arrayType == 1) {
 				cout << size << arrayType << endl;
 				//start = chrono::system_clock::now();
+				//quickSort(array, 0, size - 1);
 				//template<typename T>
 				//bubbleSort(OrderedArray, size);
 				//end = chrono::system_clock::now();
@@ -447,6 +452,25 @@ int main() {
 		default:
 			cout << "Please enter one of the valid options..." << endl;
 		}//end switch 
-
 	} while (choice != -1 || badSize == true);
+	****************************/
+
+	
+	//OrderedArray arrayCreation; 
+
+//reverseArray<int> array2(10);
+//reverseArray<int> displayArray(array2);
+
+
+//threeSorts<int> *bubble = nullptr;
+//bubble->bubbleSort(array2, 10);
+//bubbleSort(array1, 100);
+
+reverseArray<int> *revAr =  new reverseArray<int>(5);
+revAr->displayArray();
+
+threeSorts<int> *sorter = new threeSorts<int>();
+sorter->bubbleSort(revAr->getData(), 5);
+
+revAr->displayArray();
 }

@@ -1,28 +1,31 @@
+#include"array.h"
 #include<iostream>
 
 using namespace std; 
 
 //This is the reverse array option
 template<typename T>
-class reverseArray : public Array<T>{
+class reverseArray{
 	public:
-		// constructor for ReverseArray
-		reverseArray(int size){
-			int val; 
-			// populate reverse array, which is just the same as ordered but backwards
+		reverseArray(int _size) {
+			size = _size;
+			int val = 0;
+			this->arr = (T*)malloc(sizeof(T) * size); // allocate memory for this array
+
+													  // populate reverse array, which is just the same as ordered but backwards
 			for (int i = size - 1; i > -1; i--, val++)
-				this->arr[i] = val; 
+				this->arr[i] = val;
 		}
 
 		// destructor will delete array 
 		~reverseArray(){
-			delete this->arr;
+			delete this->myarray;
 		}
 
 		// Outputs the contents of the array to the console.
 		void displayArray(){
 			for (int i = 0; i < size; i++)
-				std::cout << arr[i] << std::endl;
+				cout << arr[i] << endl;
 		}
 
 		// Public Getter for the array's data
@@ -33,4 +36,5 @@ class reverseArray : public Array<T>{
 	private:
 		// array's data
 		T* arr;
+		int size = 0;
 };
