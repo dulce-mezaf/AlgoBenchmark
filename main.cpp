@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include<iostream>
 #include<chrono>
 #include<ctime>
@@ -9,41 +8,6 @@
 #include "tenArray.h"
 #include "shuffledArray.h"
 #include "array.h"
-
-
-/****
-how to use chrono
-#include <iostream>
-#include <chrono>
-#include <ctime>
-
-// Fibonacci series
-long fibonacci(unsigned n){
-	if (n < 2) return n;
-	return fibonacci(n-1) + fibonacci(n-2);
-}
-
-int main(){
-// Using time point and system_clock
-std::chrono::time_point<std::chrono::system_clock> start, end;
-
-start = std::chrono::system_clock::now();
-std::cout << "f(42) = " << fibonacci(42) << '\n';
-end = std::chrono::system_clock::now();
-
-std::chrono::duration<double> elapsed_seconds = end - start;
-std::time_t end_time = std::chrono::system_clock::to_time_t(end);
-
-std::cout << "finished computation at " << std::ctime(&end_time)
-<< "elapsed time: " << elapsed_seconds.count() << "s\n";
-}
-***/
-
-
-/***
-So that I know where I am at with my fixing, I have only gone back and checked the headers and I have two mistakes on
-reverse array that I need to fix, but I am not sure what it is that it is asking me on array.h
-****/
 
 using namespace std;
 
@@ -475,16 +439,16 @@ int main() {
 //OrderedArray<int> *ordAr = new OrderedArray<int>(5);
 //ordAr->coutArray();
 
-cout << "shuffled Array:" << endl;
-shuffledArray<int> *shuffAr = new shuffledArray<int>(5);
-shuffAr->displayShuffledArray();
+//cout << "shuffled Array:" << endl;
+//shuffledArray<int> *shuffAr = new shuffledArray<int>(5);
+//shuffAr->displayShuffledArray();
 
-//cout << "Ten Array:" << endl;
-//tenArray<int> *tenAr = new tenArray<int>(5);
-//tenAr->displayArray();
+cout << "Ten Array:" << endl;
+tenArray<int> *tenAr = new tenArray<int>(10000);
+tenAr->displayArray();
 
 //cout << "bubble sort" << endl;
-threeSorts<int> *sorter = new threeSorts<int>();
+//threeSorts<int> *sorter = new threeSorts<int>();
 //sorter->bubbleSort(revAr->getData(), 5);
 //revAr->displayArray();
 
