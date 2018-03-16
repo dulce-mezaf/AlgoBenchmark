@@ -48,19 +48,19 @@ reverse array that I need to fix, but I am not sure what it is that it is asking
 using namespace std;
 
 int main() {
-/******************************************************************	
-	//clock 
+/******************************************************************
+	//clock
 	chrono::time_point<chrono::system_clock> start, end;
 
 
-	//user input for menu 
+	//user input for menu
 	int choice;
-	//to make sure user doesnt input an invalid array size 
+	//to make sure user doesnt input an invalid array size
 	bool badSize = false;
 	//greeting message
 	cout << "Hello! Welcome to Zaira and Dulce's Project 1!" << endl;
-	
-	//repeat menu so long user doesnt enter -1 at the end 
+
+	//repeat menu so long user doesnt enter -1 at the end
 	do {
 		//lets the user see the main menu
 		cout << endl;
@@ -92,7 +92,7 @@ int main() {
 		cin >> arrayType;
 		cout << endl;
 
-		//now with that input it asks which sort you want 
+		//now with that input it asks which sort you want
 		cout << "To run bubble sort --> 1" << endl;
 		cout << "To run insertion sort --> 2" << endl;
 		cout << "To run selection sort --> 3" << endl;
@@ -111,14 +111,14 @@ int main() {
 			cout << "*********BUBBLE SORT**********" << endl;
 
 			cout << endl;
-			//ordered array 
+			//ordered array
 			if (arrayType == 1) {
 				cout << size << arrayType << endl;
-				
+
 				//Array<int> myArray(size);
 				//myArray.setArray(0, size);
 				OrderedArray<int> oR(size);
-				
+
 				//start = chrono::system_clock::now();
 				//template<typename T>
 				//threeSorts<int>::bubbleSort(oR, size)
@@ -131,7 +131,7 @@ int main() {
 				//	<< "elapsed time: " << elapsed_seconds.count() << "s\n";
 
 			}
-			//completely shuffled 
+			//completely shuffled
 			else if (arrayType == 2) {
 				cout << size << arrayType << endl;
 				//start = chrono::system_clock::now();
@@ -184,9 +184,9 @@ int main() {
 
 
 			//statement for bubblesort
-			//add a cout that will ask what size array 
-			//what kind of array 
-			//add timer and cout 
+			//add a cout that will ask what size array
+			//what kind of array
+			//add timer and cout
 			break;
 		case 2:
 			cout << "*********INSERTION SORT**********" << endl;
@@ -326,7 +326,7 @@ int main() {
 			if (arrayType == 1) {
 				cout << size << arrayType << endl;
 				//start = chrono::system_clock::now();
-				//mergeSort<array, array 
+				//mergeSort<array, array
 				//template<typename T>
 				//bubbleSort(OrderedArray, size);
 				//end = chrono::system_clock::now();
@@ -452,12 +452,12 @@ int main() {
 			exit(0);
 		default:
 			cout << "Please enter one of the valid options..." << endl;
-		}//end switch 
+		}//end switch
 	} while (choice != -1 || badSize == true);
 	****************************/
 
-	
-	//OrderedArray arrayCreation; 
+
+	//OrderedArray arrayCreation;
 
 //reverseArray<int> array2(10);
 //reverseArray<int> displayArray(array2);
@@ -482,8 +482,6 @@ shuffAr->displayShuffledArray();
 //cout << "Ten Array:" << endl;
 //tenArray<int> *tenAr = new tenArray<int>(5);
 //tenAr->displayArray();
-
-
 
 
 threeSorts<int> *sorter = new threeSorts<int>();
