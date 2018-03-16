@@ -467,13 +467,13 @@ int main() {
 //bubble->bubbleSort(array2, 10);
 //bubbleSort(array1, 100);
 
-reverseArray<int> *revAr =  new reverseArray<int>(5);
-cout << "reversed Array:"<<endl;
-revAr->displayArray();
+//reverseArray<int> *revAr =  new reverseArray<int>(5);
+//cout << "reversed Array:"<<endl;
+//revAr->displayArray();
 
-cout << "ordered Array:" <<endl;
-OrderedArray<int> *ordAr = new OrderedArray<int>(5);
-ordAr->coutArray();
+//cout << "ordered Array:" <<endl;
+//OrderedArray<int> *ordAr = new OrderedArray<int>(5);
+//ordAr->coutArray();
 
 cout << "shuffled Array:" << endl;
 shuffledArray<int> *shuffAr = new shuffledArray<int>(5);
@@ -483,9 +483,12 @@ shuffAr->displayShuffledArray();
 //tenArray<int> *tenAr = new tenArray<int>(5);
 //tenAr->displayArray();
 
-
+//cout << "bubble sort" << endl;
 threeSorts<int> *sorter = new threeSorts<int>();
-sorter->bubbleSort(revAr->getData(), 5);
+//sorter->bubbleSort(revAr->getData(), 5);
+//revAr->displayArray();
 
-revAr->displayArray();
+//cout << "selec sort" << endl;
+//sorter->selectionSort(revAr->getData(), 5);
+//revAr->displayArray();
 }

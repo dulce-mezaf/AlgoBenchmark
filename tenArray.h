@@ -15,18 +15,17 @@ class tenArray{
 		}
 
 		// constructor for 10 array
-		tenArray(int size){
+		tenArray(int _size){
 			size = _size;
-			//seed to be used with time
-			srand(time(NULL)); 
+			int newSize = 1;
 
 			// 10% of the length
-			int cap = size * 0.1; 
+			double cap = size * 0.1; 
 			T val = (T)0.0;
 
 			for (int i = 0; i < size; i++, val++)
 				// Initialize an ordered array first.
-				this->myarray[i] = value;
+				this->myarray[i] = val;
 
 			for (int i = 0; i < cap; i++)
 			{
