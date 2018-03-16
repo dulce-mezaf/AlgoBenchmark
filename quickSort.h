@@ -1,46 +1,39 @@
 #include<iostream>
 using namespace std; 
-
+template <class T >
 class quickSort {
-	void quickSort() {
-
-	}
-	void quick();
-	void swap(T* arr, int i, int j);
+//private by default so we need it to be public
+public:
+	//these are the function prototypes 
+	virtual void quicksort(T*, int left, int right);
+	virtual int partition(T* arr, int start, int end);
+	virtual void swap(T* arr, int i, int j);
 };
-//function prototypes --they are templates 
-template <class T> 
-T quickSort(T[], int, int);
 
-template <class T>
-T partition(T[], int, int);
-
-template <class T>
-T swap(T myArray, int, int);
-
-//now we actually have the defenitions of the functions
-template<class T>
-T swap(T myArray, int i, int j) {
+//now all those prototypes are defined here
+template<typename T>
+void quickSort<T>::swap(T* myArray, int i, int j) {
 	int temp;
 	temp = myArray[i];
 	myArray[i] = myArray[j];
 	myArray[j] = temp;
 }
-
-template <class T>
-T quickSort(T myArray[], int left, int right) {
+//this one is called in main, takes in input from the partition 
+template <typename T>
+void quickSort<T>::quicksort(T* myArray, int left, int right) {
 	if (left < right) {
-		int pivot = parition(myArray, left, right);
-		quickSort(myArray, left, pivot - 1);
-		quickSort(myArray, pivot + 1, right);
+
+		int pivot = partition(myArray, left, right);
+		quicksort(myArray, left, pivot - 1);
+		quicksort(myArray, pivot + 1, right);
 	}
 	return;
 }
 
-template <class T>
-T partition(T myArray[], int startIndex, int endIndex) {
+template <typename T>
+int quickSort<T>::partition(T* myArray, int startIndex, int endIndex) {
 	for (int i = startIndex; i < endIndex; i++) {
-		if (myArray[i] < = myArray[endIndex]) {
+		if (myArray[i] <= myArray[endIndex]) {
 			swap(myArray, i, startIndex);
 			startIndex;
 		}
@@ -48,8 +41,4 @@ T partition(T myArray[], int startIndex, int endIndex) {
 	swap(myArray, startIndex, endIndex);
 	return startIndex;
 }
-
-
-
-//used for swapping elements in the array.
-//i already have a swap function somewhere so just use that in here somehow 
+ 

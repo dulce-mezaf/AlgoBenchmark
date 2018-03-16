@@ -1,39 +1,35 @@
 template<typename T>
 class OrderedArray{
-public:
-	// need size 
-	int size; 
-	
-	//need to know it is an array
-	T* myarray; 
-	
-	//the size is chosen by the user
-	void array(T s){
-		//size input becomes the new size
-		size = s; 
-		//now that is the new size of the array
-		myarray = new T[size];
-	}
-	
-	//constructor for this class 
-	//actually think that int elem is useless in this format
-	OrderedArray(T val){
-		//creating an array with cont numbers 
-		for (int i =0; i<this->size; val = val+1){
-				this ->myarray[i] = val; 
+public:	
+	OrderedArray(int _size) {
+		size = _size;
+		int val = 0;
+		this->arr = (T*)malloc(sizeof(T) * size); // allocate memory for this array
+
+												  // populate reverse array, which is just the same as ordered but backwards
+		for (int i = 0; i < _size; i++,  val = val++) {
+			this->arr[i] = val;
 		}
 	}
-	
 	//destructor for this class 
 	~OrderedArray(){
-		delete this->myarray; 
+		delete this->myarr; 
 	}
 	
 	//for testing purposes I want to see this array
 	void coutArray(){
 		for (int i = 0; i < size; i++) {
-			cout << this->myarray[i] << endl; 
+			cout << arr[i] << endl; 
 		}
 		//cout << "This is your ordered array." << endl; 
 	}
+	// Public Getter for the array's data
+	T* getData() {
+		return this->arr;
+	}
+
+private:
+	// array's data
+	T* arr;
+	int size = 0;
 };

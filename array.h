@@ -25,7 +25,7 @@ public:
 
 	//array display 
 	void getArray() {
-		for (int i = 0; i < size; j++) {
+		for (int i = 0; i < size; i++) {
 			cout << myarray[i] << endl; 
 		}
 	}
@@ -45,6 +45,7 @@ public:
 			cout << "This array is not in order." << endl; 
 		}
 	}//end of ascending order bool check
+
 };
 
 #endif
