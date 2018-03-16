@@ -1,14 +1,14 @@
 #include <iostream>
 
-using namespace std; 
+using namespace std;
 
 //3 sorts insert, selection and bubble
-template <class T> 
+template <class T>
 class threeSorts{
 public:
-	virtual void bubbleSort(T* arr, int size); 
-	void insertionSort(T* arr, int size);
-	void selectionSort(T* arr, int size);
+	virtual void bubbleSort(T* arr, int size);
+	virtual void insertionSort(T* arr, int size);
+	virtual void selectionSort(T* arr, int size);
 	void swap(T* arr, int i, int j);
 };
 
@@ -20,53 +20,50 @@ void threeSorts<T>::swap(T* arr, int i, int j){
 	arr[i] = arr[j];
 	arr[j] = temp;
 }
-	
+
 //these functions all need to worry about time later
 //bubbleSort
-template <typename T> 
+template <typename T>
 void threeSorts<T>::bubbleSort(T* arr, int size){
 	int i,j;
 	for (i=0; i<size-1; i++){
 		for (j= 0; j<size-i-1; j++){
 			if (arr[j]>arr[j+1]){
 				swap(arr,j,j+1);
-			}
-		}
-	
-	}
+			}//end if
+		}//end 2nd for
+	}//end 1st for
 }
 
-//insertionSort 
-template <typename T> 
+//insertionSort
+template <typename T>
 void threeSorts<T>::insertionSort(T* arr, int size){
 	int i, j, temp;
-	for (i=0; i<size; i++){
+	for (i=1; i<size; i++){
 		j = i;
-		while (j>0 && arr[j]<arr[j-1]){
-			//try doing swap here after it works
+		while (j> 0 && arr[j] < arr[j-1]){
+			//this is the swap function
 			temp = arr[j];
 			arr[j] = arr[j-1];
 			arr [j-1] = temp;
-			j--; 
-		}
+			j--;
+		}//end while
 	}
 }
 
 
 //selectionSort
-template <typename T> 
+template <typename T>
 void threeSorts<T>::selectionSort(T* arr, int size){
-	int i,j, min; 
-	
+	int i,j, min;
+
 	for (i=0; i < (size-1); i++){
-		min = i; 
+		min = i;
 		for (j = i+1; j < size ; j++){
 			if (arr[j] < arr[min]){
 				min = j;
-			}
-		//use a swap function
-		swap(&arr[min], &arr[i]);
-		}
-	}
+			}//end if 
+		swap(arr,min,i);
+	}//end 1st for
+}//end 2nd for
 }
-
