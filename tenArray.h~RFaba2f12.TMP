@@ -10,31 +10,23 @@ class tenArray{
 
 	public:
 		// constructor for 10 array
-		tenArray(int _size) {
-			srand((unsigned)time(NULL));
+		 tenArray(int _size){
 			size = _size;
 
 			// 10% of the length
-			double shuf = _size * 0.1;
-			T val = 0;
-			this->myarray = (T*)malloc(sizeof(T) * size); // allocate memory for this array
+			double cap = _size * 0.1;
+			T val = (T)0.0;
 
 			// Initialize an ordered array first.
-			for (int i = 0; i < size; i++, val++) {
+			for (int i = 0; i < size; i++, val++)
 				this->myarray[i] = val;
-			}
 
-			cout << "Created an ordered array." << endl;
-
-			//swap randindex swapping 
-			for (int i = 0; i <= shuf; i++) {
+	    // shuffle 10% of the array
+			for (int i = 0; i < cap; i++){
 				int randIndex = rand() % _size;
-				int randIndex2 = rand() % _size;
-				swap(randIndex, randIndex2);
-				cout << "Did some swapping" << endl;
+				swap(i, randIndex);
 			}
 		}
-
 
 		// destructor will delete array from memory
 		~tenArray(){
