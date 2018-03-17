@@ -31,7 +31,7 @@ class tenArray{
 				int randIndex = rand() % _size;
 				int randIndex2 = rand() % _size;
 				swap(randIndex, randIndex2);
-				cout << "Did some swapping" << endl;
+				//cout << "Did some swapping" << endl;
 			}
 		}
 
@@ -43,9 +43,10 @@ class tenArray{
 
 		// Outputs the contents of the array to the console.
 		void displayArray(){
-			cout << "You are in the display function." << endl;
+			//cout << "You are in the display function." << endl;
 			for (int i = 0; i < size; i++)
-				cout << this->myarray[i] << endl;
+				cout << this->myarray[i];
+			cout << " " << endl;
 		}
 
 

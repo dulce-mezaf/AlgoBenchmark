@@ -23,6 +23,24 @@ void quickSort<T>::swap(T* myArray, int i, int j) {
 	myArray[i] = myArray[j];
 	myArray[j] = temp;
 }
+//partition function
+template <typename T>
+int quickSort<T>::partition(T* myArray, int startIndex, int endIndex) {
+	//pivot is the middle of the array 
+	//int middle = (startIndex + endIndex) / 2;
+
+	//int pivot = myArray[endIndex];
+	//int d = (startIndex - 1);
+	for (int i = startIndex; i < endIndex; i++) {
+		if (myArray[i] <= myArray[endIndex]) {
+			
+			swap(myArray, i, startIndex);
+			startIndex++;
+		}
+	}
+	swap(myArray, startIndex, endIndex);
+	return startIndex;
+}
 //this one is called in main, takes in input from the partition 
 template <typename T>
 void quickSort<T>::quicksort(T* myArray, int left, int right) {
@@ -38,17 +56,5 @@ void quickSort<T>::quicksort(T* myArray, int left, int right) {
 
 }
 
-template <typename T>
-int quickSort<T>::partition(T* myArray, int startIndex, int endIndex) {
-	//pivot is the middle of the array 
-	int pivot = (startIndex + endIndex)/2;
-	for (int i = startIndex; i < endIndex; i++) {
-		if (myArray[i] <= myArray[endIndex]) {
-			swap(myArray, i, startIndex);
-			startIndex;
-		}
-	}
-	swap(myArray, startIndex, endIndex);
-	return startIndex + 1;
-}
+
  

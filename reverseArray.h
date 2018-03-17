@@ -25,7 +25,8 @@ class reverseArray{
 		// Outputs the contents of the array to the console.
 		void displayArray(){
 			for (int i = 0; i < size; i++)
-				cout << arr[i] << endl;
+				cout << arr[i];
+			cout <<" "<< endl;
 		}
 
 		// Public Getter for the array's data

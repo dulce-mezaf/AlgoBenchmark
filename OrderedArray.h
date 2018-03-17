@@ -19,7 +19,8 @@ public:
 	//for testing purposes I want to see this array
 	void coutArray(){
 		for (int i = 0; i < size; i++) {
-			cout << arr[i] << endl; 
+			cout << arr[i];
+			cout <<" "<< endl;
 		}
 		//cout << "This is your ordered array." << endl; 
 	}
