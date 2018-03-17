@@ -1,57 +1,23 @@
 #include "stdafx.h"
 #include<iostream>
 #include<chrono>
-#include<ctime>
 #include "threeSorts.h"
 #include "OrderedArray.h"
 #include "reverseArray.h"
 #include "mergeSort.h"
+#include "quickSort.h"
 #include "tenArray.h"
 #include "shuffledArray.h"
 #include "array.h"
 
 
-/****
-how to use chrono
-#include <iostream>
-#include <chrono>
-#include <ctime>
-
-// Fibonacci series
-long fibonacci(unsigned n){
-	if (n < 2) return n;
-	return fibonacci(n-1) + fibonacci(n-2);
-}
-
-int main(){
-// Using time point and system_clock
-std::chrono::time_point<std::chrono::system_clock> start, end;
-
-start = std::chrono::system_clock::now();
-std::cout << "f(42) = " << fibonacci(42) << '\n';
-end = std::chrono::system_clock::now();
-
-std::chrono::duration<double> elapsed_seconds = end - start;
-std::time_t end_time = std::chrono::system_clock::to_time_t(end);
-
-std::cout << "finished computation at " << std::ctime(&end_time)
-<< "elapsed time: " << elapsed_seconds.count() << "s\n";
-}
-***/
-
-
-/***
-So that I know where I am at with my fixing, I have only gone back and checked the headers and I have two mistakes on
-reverse array that I need to fix, but I am not sure what it is that it is asking me on array.h
-****/
-
 using namespace std;
+using namespace std::chrono;
 
 int main() {
-/******************************************************************
-	//clock
-	chrono::time_point<chrono::system_clock> start, end;
-
+	threeSorts<int> *sorter = new threeSorts<int>();
+	quickSort<int> *qSorter = new quickSort<int>();
+	mergeSort<int> *mSorter = new mergeSort<int>();
 
 	//user input for menu
 	int choice;
@@ -67,21 +33,26 @@ int main() {
 		cout << "_________________________________________" << endl;
 		cout << "               MAIN MENU" << endl;
 		cout << endl;
-		//first asks for array size
+		
+		//asks for array size
 		int size;
 		cout << "Enter the size of array you want to sort:" << endl;
 		cout << "100 or 1000 or 10000 or 100000 or 1000000" << endl;
 		cin >> size;
-		//create array
-		//Array<int>(size);
+		//ordered arrays -all sizes
+		OrderedArray<int> *ordAr = new OrderedArray<int>(size);
+	
+
+		//reversed array-- all sizes 
+		reverseArray<int> *revAr = new reverseArray<int>(size);
+		
+
+		//shuffled array -- all sizes
+		shuffledArray<int> *shuffAr = new shuffledArray<int>(size);
+	
+
 		cout << endl;
 
-		/*if (size != 100 || size != 1000 || size != 10000 || size != 100000 || size != 1000000) {
-		cout << "Invalid size!" << endl;
-		badSize = true;
-
-		}*/
-	/*************
 		//then asks for array type
 		int arrayType;
 		cout << "Select the type of array you want to sort:" << endl;
@@ -107,388 +78,354 @@ int main() {
 		cin >> choice;
 
 		switch (choice) {
+			/*******************************************************bubble sort*************************************************************/
 		case 1:
 			cout << "*********BUBBLE SORT**********" << endl;
 
 			cout << endl;
 			//ordered array
 			if (arrayType == 1) {
-				cout << size << arrayType << endl;
 
-				//Array<int> myArray(size);
-				//myArray.setArray(0, size);
-				OrderedArray<int> oR(size);
 
-				//start = chrono::system_clock::now();
-				//template<typename T>
-				//threeSorts<int>::bubbleSort(oR, size)
-				//end = chrono::system_clock::now();
+
+				cout << "time start" << endl;
+				//clock
+				high_resolution_clock::time_point t1 = high_resolution_clock::now();
+				sorter->bubbleSort(ordAr->getData(), size);
+				high_resolution_clock::time_point t2 = high_resolution_clock::now();
+
 				//get time
-				//chrono::duration<double> elapsed_seconds = end - start;
-				//time_t end_time = chrono::system_clock::to_time_t(end);
+				auto duration = duration_cast<microseconds>(t2 - t1).count();
 
-				//cout << "finished Bubble Sort at " << put_time(&end_time)
-				//	<< "elapsed time: " << elapsed_seconds.count() << "s\n";
+				cout << "BS Time: " << duration << "ms" << endl;
+
 
 			}
 			//completely shuffled
 			else if (arrayType == 2) {
-				cout << size << arrayType << endl;
-				//start = chrono::system_clock::now();
-				//template<typename T>
-				//void threeSorts::bubbleSort(OrderedArray, size);
-				//end = chrono::system_clock::now();
+				cout << "shuffled array" << endl;
+				cout << "time start" << endl;
+				//clock
+				high_resolution_clock::time_point t1 = high_resolution_clock::now();
+				sorter->bubbleSort(shuffAr->getData(), size);
+				high_resolution_clock::time_point t2 = high_resolution_clock::now();
+
 				//get time
-			//	chrono::duration<double> elapsed_seconds = end - start;
-				//time_t end_time = chrono::system_clock::to_time_t(end);
+				auto duration = duration_cast<microseconds>(t2 - t1).count();
 
-			//	cout << "finished Bubble Sort at " << ctime(&end_time)
-			//		<< "elapsed time: " << elapsed_seconds.count() << "s\n";
-
+				cout << "BS Time: " << duration << "ms" << endl;
 
 			}
 			//reverse ordered
 			else if (arrayType == 3) {
-				cout << size << arrayType << endl;
-				//reverseArray<int> rA(size);
-				//	start = chrono::system_clock::now();
-					//template<typename T>
-					//void threeSorts::bubbleSort(reverseArray, size);
-				//	end = chrono::system_clock::now();
-					//get time
-					//chrono::duration<double> elapsed_seconds = end - start;
-					//time_t end_time = chrono::system_clock::to_time_t(end);
+				cout << "reverse array " << endl;
+				cout << "time start" << endl;
+				//clock
+				high_resolution_clock::time_point t1 = high_resolution_clock::now();
+				sorter->bubbleSort(revAr->getData(), size);
+				high_resolution_clock::time_point t2 = high_resolution_clock::now();
 
-					//cout << "finished Bubble Sort at " << ctime(&end_time)
-					//	<< "elapsed time: " << elapsed_seconds.count() << "s\n";
+				//get time
+				auto duration = duration_cast<microseconds>(t2 - t1).count();
+
+				cout << "BS Time: " << duration << "ms" << endl;
 
 			}
 			//shuffled at 10
 			else if (arrayType == 4) {
 				cout << size << arrayType << endl;
-				//tenArray<int> tA(size);
-				//start = chrono::system_clock::now();
-				//template<typename T>
-				//void threeSorts::bubbleSort(tenArray, size);
-				//end = chrono::system_clock::now();
-				//get time
-				//chrono::duration<double> elapsed_seconds = end - start;
-				//time_t end_time = chrono::system_clock::to_time_t(end);
-
-			//	cout << "finished Bubble Sort at " << ctime(&end_time)
-			//		<< "elapsed time: " << elapsed_seconds.count() << "s\n";
-
 
 			}
-			//void tenArray<T> ::tenArray(size);
 
-
-			//statement for bubblesort
-			//add a cout that will ask what size array
-			//what kind of array
-			//add timer and cout
 			break;
+			/*******************************************************insertion sort*************************************************************/
 		case 2:
 			cout << "*********INSERTION SORT**********" << endl;
 
 			cout << endl;
-
+			//ordered array
 			if (arrayType == 1) {
-				cout << size << arrayType << endl;
-				OrderedArray<int> oR(size);
-				//start = chrono::system_clock::now();
-				//template<typename T>
-				//bubbleSort(OrderedArray, size);
-				//end = chrono::system_clock::now();
-				//get time
-				//chrono::duration<double> elapsed_seconds = end - start;
-				//time_t end_time = chrono::system_clock::to_time_t(end);
 
-				//cout << "finished Bubble Sort at " << put_time(&end_time)
-				//	<< "elapsed time: " << elapsed_seconds.count() << "s\n";
+
+
+				cout << "time start" << endl;
+				//clock
+				high_resolution_clock::time_point t1 = high_resolution_clock::now();
+				sorter->insertionSort(ordAr->getData(), size);
+				high_resolution_clock::time_point t2 = high_resolution_clock::now();
+
+				//get time
+				auto duration = duration_cast<microseconds>(t2 - t1).count();
+
+				cout << "IS Time: " << duration << "ms" << endl;
+
 
 			}
+			//completely shuffled
 			else if (arrayType == 2) {
-				cout << size << arrayType << endl;
-				//start = chrono::system_clock::now();
-				//template<typename T>
-				//void threeSorts::bubbleSort(OrderedArray, size);
-				//end = chrono::system_clock::now();
+				cout << "shuffled array" << endl;
+				cout << "time start" << endl;
+				//clock
+				high_resolution_clock::time_point t1 = high_resolution_clock::now();
+				sorter->insertionSort(shuffAr->getData(), size);
+				high_resolution_clock::time_point t2 = high_resolution_clock::now();
+
 				//get time
-				//	chrono::duration<double> elapsed_seconds = end - start;
-				//time_t end_time = chrono::system_clock::to_time_t(end);
+				auto duration = duration_cast<microseconds>(t2 - t1).count();
 
-				//	cout << "finished Bubble Sort at " << ctime(&end_time)
-				//		<< "elapsed time: " << elapsed_seconds.count() << "s\n";
-
+				cout << "IS Time: " << duration << "ms" << endl;
 
 			}
+			//reverse ordered
 			else if (arrayType == 3) {
-				cout << size << arrayType << endl;
-				//	start = chrono::system_clock::now();
-				//template<typename T>
-				//void threeSorts::bubbleSort(reverseArray, size);
-				//	end = chrono::system_clock::now();
-				//get time
-				//chrono::duration<double> elapsed_seconds = end - start;
-				//time_t end_time = chrono::system_clock::to_time_t(end);
+				cout << "reverse array " << endl;
+				cout << "time start" << endl;
+				//clock
+				high_resolution_clock::time_point t1 = high_resolution_clock::now();
+				sorter->insertionSort(revAr->getData(), size);
+				high_resolution_clock::time_point t2 = high_resolution_clock::now();
 
-				//cout << "finished Bubble Sort at " << ctime(&end_time)
-				//	<< "elapsed time: " << elapsed_seconds.count() << "s\n";
+				//get time
+				auto duration = duration_cast<microseconds>(t2 - t1).count();
+
+				cout << "IS Time: " << duration << "ms" << endl;
 
 			}
+			//shuffled at 10
 			else if (arrayType == 4) {
 				cout << size << arrayType << endl;
-				//start = chrono::system_clock::now();
-				//template<typename T>
-				//void threeSorts::bubbleSort(tenArray, size);
-				//end = chrono::system_clock::now();
-				//get time
-				//chrono::duration<double> elapsed_seconds = end - start;
-				//time_t end_time = chrono::system_clock::to_time_t(end);
-
-				//	cout << "finished Bubble Sort at " << ctime(&end_time)
-				//		<< "elapsed time: " << elapsed_seconds.count() << "s\n";
 
 
 			}
-			//void tenArray<T> ::tenArray(size);
-
-
 
 			break;
+			/*******************************************************selection sort*************************************************************/
 		case 3:
 			cout << "*********SELECTION SORT**********" << endl;
 
 			if (arrayType == 1) {
-				cout << size << arrayType << endl;
-				//start = chrono::system_clock::now();
-				//template<typename T>
-				//bubbleSort(OrderedArray, size);
-				//end = chrono::system_clock::now();
-				//get time
-				//chrono::duration<double> elapsed_seconds = end - start;
-				//time_t end_time = chrono::system_clock::to_time_t(end);
+				cout << endl;
+				//ordered array
+				if (arrayType == 1) {
 
-				//cout << "finished Bubble Sort at " << put_time(&end_time)
-				//	<< "elapsed time: " << elapsed_seconds.count() << "s\n";
+					cout << "time start" << endl;
+					//clock
+					high_resolution_clock::time_point t1 = high_resolution_clock::now();
+					sorter->selectionSort(ordAr->getData(), size);
+					high_resolution_clock::time_point t2 = high_resolution_clock::now();
 
-			}
-			else if (arrayType == 2) {
-				cout << size << arrayType << endl;
-				//start = chrono::system_clock::now();
-				//template<typename T>
-				//void threeSorts::bubbleSort(OrderedArray, size);
-				//end = chrono::system_clock::now();
-				//get time
-				//	chrono::duration<double> elapsed_seconds = end - start;
-				//time_t end_time = chrono::system_clock::to_time_t(end);
+					//get time
+					auto duration = duration_cast<microseconds>(t2 - t1).count();
 
-				//	cout << "finished Bubble Sort at " << ctime(&end_time)
-				//		<< "elapsed time: " << elapsed_seconds.count() << "s\n";
+					cout << "SS Time: " << duration << "ms" << endl;
 
 
-			}
-			else if (arrayType == 3) {
-				cout << size << arrayType << endl;
-				//	start = chrono::system_clock::now();
-				//template<typename T>
-				//void threeSorts::bubbleSort(reverseArray, size);
-				//	end = chrono::system_clock::now();
-				//get time
-				//chrono::duration<double> elapsed_seconds = end - start;
-				//time_t end_time = chrono::system_clock::to_time_t(end);
+				}
+				//completely shuffled
+				else if (arrayType == 2) {
+					cout << "shuffled array" << endl;
+					cout << "time start" << endl;
+					//clock
+					high_resolution_clock::time_point t1 = high_resolution_clock::now();
+					sorter->selectionSort(shuffAr->getData(), size);
+					high_resolution_clock::time_point t2 = high_resolution_clock::now();
 
-				//cout << "finished Bubble Sort at " << ctime(&end_time)
-				//	<< "elapsed time: " << elapsed_seconds.count() << "s\n";
+					//get time
+					auto duration = duration_cast<microseconds>(t2 - t1).count();
 
-			}
-			else if (arrayType == 4) {
-				cout << size << arrayType << endl;
-				//start = chrono::system_clock::now();
-				//template<typename T>
-				//void threeSorts::bubbleSort(tenArray, size);
-				//end = chrono::system_clock::now();
-				//get time
-				//chrono::duration<double> elapsed_seconds = end - start;
-				//time_t end_time = chrono::system_clock::to_time_t(end);
+					cout << "SS Time: " << duration << "ms" << endl;
 
-				//	cout << "finished Bubble Sort at " << ctime(&end_time)
-				//		<< "elapsed time: " << elapsed_seconds.count() << "s\n";
+				}
+				//reverse ordered
+				else if (arrayType == 3) {
+					cout << "reverse array " << endl;
+					cout << "time start" << endl;
+					//clock
+					high_resolution_clock::time_point t1 = high_resolution_clock::now();
+					sorter->selectionSort(revAr->getData(), size);
+					high_resolution_clock::time_point t2 = high_resolution_clock::now();
+
+					//get time
+					auto duration = duration_cast<microseconds>(t2 - t1).count();
+
+					cout << "SS Time: " << duration << "ms" << endl;
+
+				}
+				//shuffled at 10
+				else if (arrayType == 4) {
+					cout << size << arrayType << endl;
 
 
-			}
-			//void tenArray<T> ::tenArray(size);
-			break;
+				}
+				break;
+				/*******************************************************merge sort*************************************************************/
 		case 4:
 			cout << "*********MERGE SORT**********" << endl;
 
+			cout << endl;
+			//ordered array
 			if (arrayType == 1) {
-				cout << size << arrayType << endl;
-				//start = chrono::system_clock::now();
-				//mergeSort<array, array
-				//template<typename T>
-				//bubbleSort(OrderedArray, size);
-				//end = chrono::system_clock::now();
-				//get time
-				//chrono::duration<double> elapsed_seconds = end - start;
-				//time_t end_time = chrono::system_clock::to_time_t(end);
 
-				//cout << "finished Bubble Sort at " << put_time(&end_time)
-				//	<< "elapsed time: " << elapsed_seconds.count() << "s\n";
+				cout << "time start" << endl;
+				//clock
+				high_resolution_clock::time_point t1 = high_resolution_clock::now();
+				mSorter->mergesort(ordAr->getData(), 0, size - 1);
+				high_resolution_clock::time_point t2 = high_resolution_clock::now();
+
+				//get time
+				auto duration = duration_cast<microseconds>(t2 - t1).count();
+
+				cout << "MS Time: " << duration << "ms" << endl;
+
 
 			}
+			//completely shuffled
 			else if (arrayType == 2) {
-				cout << size << arrayType << endl;
-				//start = chrono::system_clock::now();
-				//template<typename T>
-				//void threeSorts::bubbleSort(OrderedArray, size);
-				//end = chrono::system_clock::now();
+				cout << "shuffled array" << endl;
+				cout << "time start" << endl;
+				//clock
+				high_resolution_clock::time_point t1 = high_resolution_clock::now();
+				mSorter->mergesort(shuffAr->getData(), 0, size - 1);
+				high_resolution_clock::time_point t2 = high_resolution_clock::now();
+
 				//get time
-				//	chrono::duration<double> elapsed_seconds = end - start;
-				//time_t end_time = chrono::system_clock::to_time_t(end);
+				auto duration = duration_cast<microseconds>(t2 - t1).count();
 
-				//	cout << "finished Bubble Sort at " << ctime(&end_time)
-				//		<< "elapsed time: " << elapsed_seconds.count() << "s\n";
-
+				cout << "MS Time: " << duration << "ms" << endl;
 
 			}
+			//reverse ordered
 			else if (arrayType == 3) {
-				cout << size << arrayType << endl;
-				//	start = chrono::system_clock::now();
-				//template<typename T>
-				//void threeSorts::bubbleSort(reverseArray, size);
-				//	end = chrono::system_clock::now();
-				//get time
-				//chrono::duration<double> elapsed_seconds = end - start;
-				//time_t end_time = chrono::system_clock::to_time_t(end);
+				cout << "reverse array " << endl;
+				cout << "time start" << endl;
+				//clock
+				high_resolution_clock::time_point t1 = high_resolution_clock::now();
+				mSorter->mergesort(revAr->getData(), 0, size - 1);
+				high_resolution_clock::time_point t2 = high_resolution_clock::now();
 
-				//cout << "finished Bubble Sort at " << ctime(&end_time)
-				//	<< "elapsed time: " << elapsed_seconds.count() << "s\n";
+				//get time
+				auto duration = duration_cast<microseconds>(t2 - t1).count();
+
+				cout << "MS Time: " << duration << "ms" << endl;
 
 			}
+			//shuffled at 10
 			else if (arrayType == 4) {
 				cout << size << arrayType << endl;
-				//start = chrono::system_clock::now();
-				//mergeSort<T>::mergesort(T* arr, T* aux, int lo, int hi);
-				//template<typename T>
-				//void threeSorts::bubbleSort(tenArray, size);
-				//end = chrono::system_clock::now();
-				//get time
-				//chrono::duration<double> elapsed_seconds = end - start;
-				//time_t end_time = chrono::system_clock::to_time_t(end);
-
-				//	cout << "finished Bubble Sort at " << ctime(&end_time)
-				//		<< "elapsed time: " << elapsed_seconds.count() << "s\n";
-
 
 			}
-			//void tenArray<T> ::tenArray(size);
 
 			break;
+			/*******************************************************quick sort*************************************************************/
 		case 5:
 			cout << "*********QUICK SORT**********" << endl;
 
+			cout << endl;
+			//ordered array
 			if (arrayType == 1) {
-				cout << size << arrayType << endl;
-				//start = chrono::system_clock::now();
-				//quickSort(array, 0, size - 1);
-				//template<typename T>
-				//bubbleSort(OrderedArray, size);
-				//end = chrono::system_clock::now();
-				//get time
-				//chrono::duration<double> elapsed_seconds = end - start;
-				//time_t end_time = chrono::system_clock::to_time_t(end);
+				cout << "ordered array" << endl;
 
-				//cout << "finished Bubble Sort at " << put_time(&end_time)
-				//	<< "elapsed time: " << elapsed_seconds.count() << "s\n";
+				cout << "time start" << endl;
+				//clock
+				high_resolution_clock::time_point t1 = high_resolution_clock::now();
+				qSorter->quicksort(ordAr->getData(), 0, size - 1);
+				high_resolution_clock::time_point t2 = high_resolution_clock::now();
+
+				//get time
+				auto duration = duration_cast<microseconds>(t2 - t1).count();
+
+				cout << "QS Time: " << duration << " ms" << endl;
+
 
 			}
+			//completely shuffled
 			else if (arrayType == 2) {
-				cout << size << arrayType << endl;
-				//start = chrono::system_clock::now();
-				//template<typename T>
-				//void threeSorts::bubbleSort(OrderedArray, size);
-				//end = chrono::system_clock::now();
+				cout << "shuffled array" << endl;
+				cout << "time start" << endl;
+				//clock
+				high_resolution_clock::time_point t1 = high_resolution_clock::now();
+				qSorter->quicksort(shuffAr->getData(), 0, size - 1);
+				high_resolution_clock::time_point t2 = high_resolution_clock::now();
+
 				//get time
-				//	chrono::duration<double> elapsed_seconds = end - start;
-				//time_t end_time = chrono::system_clock::to_time_t(end);
+				auto duration = duration_cast<microseconds>(t2 - t1).count();
 
-				//	cout << "finished Bubble Sort at " << ctime(&end_time)
-				//		<< "elapsed time: " << elapsed_seconds.count() << "s\n";
-
+				cout << "QS Time: " << duration << "ms" << endl;
 
 			}
+			//reverse ordered
 			else if (arrayType == 3) {
-				cout << size << arrayType << endl;
-				//	start = chrono::system_clock::now();
-				//template<typename T>
-				//void threeSorts::bubbleSort(reverseArray, size);
-				//	end = chrono::system_clock::now();
-				//get time
-				//chrono::duration<double> elapsed_seconds = end - start;
-				//time_t end_time = chrono::system_clock::to_time_t(end);
+				cout << "reverse array " << endl;
+				cout << "time start" << endl;
+				//clock
+				high_resolution_clock::time_point t1 = high_resolution_clock::now();
+				qSorter->quicksort(revAr->getData(), 0, size - 1);
+				high_resolution_clock::time_point t2 = high_resolution_clock::now();
 
-				//cout << "finished Bubble Sort at " << ctime(&end_time)
-				//	<< "elapsed time: " << elapsed_seconds.count() << "s\n";
+				//get time
+				auto duration = duration_cast<microseconds>(t2 - t1).count();
+
+				cout << "QS Time: " << duration << "ms" << endl;
 
 			}
+			//shuffled at 10
 			else if (arrayType == 4) {
 				cout << size << arrayType << endl;
-				//start = chrono::system_clock::now();
-				//template<typename T>
-				//void threeSorts::bubbleSort(tenArray, size);
-				//end = chrono::system_clock::now();
-				//get time
-				//chrono::duration<double> elapsed_seconds = end - start;
-				//time_t end_time = chrono::system_clock::to_time_t(end);
-
-				//	cout << "finished Bubble Sort at " << ctime(&end_time)
-				//		<< "elapsed time: " << elapsed_seconds.count() << "s\n";
 			}
-			//void tenArray<T> ::tenArray(size);
 			break;
+
 		case -1: //exit menu
 			exit(0);
+
 		default:
 			cout << "Please enter one of the valid options..." << endl;
 		}//end switch
-	} while (choice != -1 || badSize == true);
-	****************************/
+		}
+	}//end do 
+		while (choice != -1 || badSize == true);
 
 
-	//OrderedArray arrayCreation;
 
-//reverseArray<int> array2(10);
-//reverseArray<int> displayArray(array2);
+	}
+		//OrderedArray arrayCreation;
+
+	//reverseArray<int> array2(10);
+	//reverseArray<int> displayArray(array2);
 
 
-//threeSorts<int> *bubble = nullptr;
-//bubble->bubbleSort(array2, 10);
-//bubbleSort(array1, 100);
+	//threeSorts<int> *bubble = nullptr;
+	//bubble->bubbleSort(array2, 10);
+	//bubbleSort(array1, 100);
 
-//reverseArray<int> *revAr =  new reverseArray<int>(5);
-//cout << "reversed Array:"<<endl;
-//revAr->displayArray();
+	//reverseArray<int> *revAr =  new reverseArray<int>(5);
+	//cout << "reversed Array:"<<endl;
+	//revAr->displayArray();
 
-//cout << "ordered Array:" <<endl;
-//OrderedArray<int> *ordAr = new OrderedArray<int>(5);
-//ordAr->coutArray();
+	//cout << "ordered Array:" <<endl;
+	//OrderedArray<int> *ordAr = new OrderedArray<int>(5);
+	//ordAr->coutArray();
 
-cout << "shuffled Array:" << endl;
-shuffledArray<int> *shuffAr = new shuffledArray<int>(5);
-shuffAr->displayShuffledArray();
+	//cout << "shuffled Array:" << endl;
+	//shuffledArray<int> *shuffAr = new shuffledArray<int>(5);
+	//shuffAr->displayShuffledArray();
 
-//cout << "Ten Array:" << endl;
-//tenArray<int> *tenAr = new tenArray<int>(5);
-//tenAr->displayArray();
+	//cout << "Ten Array:" << endl;
+	//tenArray<int> *tenAr = new tenArray<int>(5);
+	//tenAr->displayArray();
 
-//cout << "bubble sort" << endl;
-threeSorts<int> *sorter = new threeSorts<int>();
-//sorter->bubbleSort(revAr->getData(), 5);
-//revAr->displayArray();
+	//cout << "bubble sort" << endl;
+	//threeSorts<int> *sorter = new threeSorts<int>();
+	//sorter->bubbleSort(revAr->getData(), 5);
+	//revAr->displayArray();
 
-//cout << "selec sort" << endl;
-//sorter->selectionSort(revAr->getData(), 5);
-//revAr->displayArray();
-}
+	//cout << "selec sort" << endl;
+	//sorter->selectionSort(revAr->getData(), 5);
+	//revAr->displayArray();
+
+
+	//cout << "quick sort" << endl;
+	//quickSort<int> *qSort = new quickSort<int>();
+	//qSort->quicksort(revAr->getData(), 0, 4);
+	//revAr->displayArray();
+	
+

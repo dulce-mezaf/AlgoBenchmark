@@ -1,3 +1,8 @@
+/**
+This has the prototypes and implementation of mergesort. We only have mergesort and merge function in here.
+Mergesort is what is being called initially and then we have merge that put the merged arrays together. 
+Remember that this is a template. 
+**/
 #include<iostream>
 using namespace std; 
 

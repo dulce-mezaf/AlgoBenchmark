@@ -1,5 +1,11 @@
+/*
+This is the template of the shuffled array. You are allowed to display the array. It uses a seed to generate
+random values each time it runs. 
+
+*/
 #include"array.h"
 #include<iostream>
+#include<time.h>
 using namespace std;
 
 //this is the shuffled array option
@@ -10,7 +16,10 @@ public:
 		size = _size;
 		//allocate memory for this array
 		this->arr = (T*)malloc(sizeof(T) * size);
+		//we want a random array each time
+		srand(time(NULL));
 		for (int i = 0; i < size; i++) {
+			//give each value a random number all the way up to 10
 			this->arr[i] = rand() % 10 + 1;
 		}
 	}
@@ -23,7 +32,8 @@ public:
 	//displays shuffled array
 	void displayShuffledArray() {
 		for (int i = 0; i < size; i++)
-			cout << arr[i] << endl;
+			cout << arr[i];
+		cout << " "<<endl;
 	}
 
 	//public getter for the array's data
