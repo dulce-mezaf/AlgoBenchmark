@@ -17,10 +17,10 @@ public:
 		//allocate memory for this array
 		this->arr = (T*)malloc(sizeof(T) * size);
 		//we want a random array each time
-		srand(time(NULL));
+		srand((unsigned)time(NULL));
 		for (int i = 0; i < size; i++) {
-			//give each value a random number all the way up to 10
-			this->arr[i] = rand() % 10 + 1;
+			//give each value a random number all the way up to 
+			this->arr[i] = rand() % (size + 1);
 		}
 	}
 

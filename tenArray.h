@@ -24,7 +24,7 @@ class tenArray{
 				this->myarray[i] = val;
 			}
 
-			cout << "Created an ordered array." << endl;
+			//cout << "Created an ordered array." << endl;
 
 			//swap randindex swapping 
 			for (int i = 0; i <= shuf; i++) {
