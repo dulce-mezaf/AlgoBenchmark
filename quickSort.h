@@ -28,7 +28,7 @@ template <typename T>
 int quickSort<T>::partition(T* myArray, int startIndex, int endIndex) {
 	//pivot is the middle of the array 
 	//int middle = (startIndex + endIndex) / 2;
-
+	int pivot = myArray[startIndex + (endIndex - startIndex) / 2];
 	//int pivot = myArray[endIndex];
 	//int d = (startIndex - 1);
 	for (int i = startIndex; i < endIndex; i++) {
