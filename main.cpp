@@ -22,6 +22,7 @@ int main() {
 	threeSorts<int> *sorter = new threeSorts<int>();
 	quickSort<int> *qSorter = new quickSort<int>();
 	mergeSort<int> *mSorter = new mergeSort<int>();
+
 	//user input for main menu in case 2 for runType switch (line 39)
 	int choice;
 	
@@ -35,9 +36,9 @@ int main() {
 	cout << "Hello! Welcome to Zaira and Dulce's Project 1!\n" << endl;
 
 	//ask user which run type they want
-	cout << "Do you want to collect times of each sort for data analysis or run a sort one at a time?" << endl;
+	cout << "Do you want to collect times of each sort for data analysis or run a sort 100 times at a time?" << endl;
 	cout << "Data Collection please! -> 1" << endl;
-	cout << "One sort at a time, works best right now! -> 2" << endl;
+	cout << "Run sort 100 times for each variation, works best right now! -> 2" << endl;
 	cin >> runType;
 	switch (runType) {
 	case 1: //user wants to collect data!
@@ -2173,64 +2174,89 @@ int main() {
 					//ordered array
 					if (arrayType == 1) {
 
+						myfile << "**************************bubble Sort time in MicroSec*************************\n";
+						myfile << "*********************************ordered Array***********************\n";
+						myfile << "**************************" << size << " elements*********************************\n";
+						for (int i = 0; i < 100; i++) {
+							OrderedArray<int> *ordAr = new OrderedArray<int>(size);
+							cout << "time start" << endl;
+							//clock
+							high_resolution_clock::time_point t1 = high_resolution_clock::now();
+							sorter->bubbleSort(ordAr->getData(), size);
+							high_resolution_clock::time_point t2 = high_resolution_clock::now();
 
+							//get time
+							auto duration = duration_cast<microseconds>(t2 - t1).count();
 
-						cout << "time start" << endl;
-						//clock
-						high_resolution_clock::time_point t1 = high_resolution_clock::now();
-						sorter->bubbleSort(ordAr->getData(), size);
-						high_resolution_clock::time_point t2 = high_resolution_clock::now();
-
-						//get time
-						auto duration = duration_cast<microseconds>(t2 - t1).count();
-
-						cout << "BS Time: " << duration << "ms" << endl;
-
+							myfile << duration << endl;
+						}
+						myfile.close();
 
 					}
 					//completely shuffled
 					else if (arrayType == 2) {
 						cout << "shuffled array" << endl;
-						cout << "time start" << endl;
-						//clock
-						high_resolution_clock::time_point t1 = high_resolution_clock::now();
-						sorter->bubbleSort(shuffAr->getData(), size);
-						high_resolution_clock::time_point t2 = high_resolution_clock::now();
+						myfile << "**************************bubble Sort time in MicroSec*************************\n";
+						myfile << "*********************************shuffled Array***********************\n";
+						myfile << "**************************" << size << " elements*********************************\n";
+						for (int i = 0; i < 100; i++) {
+							shuffledArray<int> *shuffAr = new shuffledArray<int>(size);
+							cout << "time start" << endl;
+							//clock
+							high_resolution_clock::time_point t1 = high_resolution_clock::now();
+							sorter->bubbleSort(shuffAr->getData(), size);
+							high_resolution_clock::time_point t2 = high_resolution_clock::now();
 
-						//get time
-						auto duration = duration_cast<microseconds>(t2 - t1).count();
+							//get time
+							auto duration = duration_cast<microseconds>(t2 - t1).count();
 
-						cout << "BS Time: " << duration << "ms" << endl;
+							myfile  << duration << endl;
+						}
+						myfile.close();
 
 					}
 					//reverse ordered
 					else if (arrayType == 3) {
 						cout << "reverse array " << endl;
-						cout << "time start" << endl;
-						//clock
-						high_resolution_clock::time_point t1 = high_resolution_clock::now();
-						sorter->bubbleSort(revAr->getData(), size);
-						high_resolution_clock::time_point t2 = high_resolution_clock::now();
+						myfile << "**************************bubble Sort time in MicroSec*************************\n";
+						myfile << "*********************************reversed Array***********************\n";
+						myfile << "**************************" << size << " elements*********************************\n";
+						for (int i = 0; i < 100; i++) {
+							reverseArray<int> *revAr = new reverseArray<int>(size);
+							cout << "time start" << endl;
+							//clock
+							high_resolution_clock::time_point t1 = high_resolution_clock::now();
+							sorter->bubbleSort(revAr->getData(), size);
+							high_resolution_clock::time_point t2 = high_resolution_clock::now();
 
-						//get time
-						auto duration = duration_cast<microseconds>(t2 - t1).count();
+							//get time
+							auto duration = duration_cast<microseconds>(t2 - t1).count();
 
-						cout << "BS Time: " << duration << "ms" << endl;
+							myfile << duration << endl;
+						}
+						myfile.close();
 
 					}
 					//shuffled at 10
 					else if (arrayType == 4) {
 						cout << "ten array " << endl;
-						cout << "time start" << endl;
-						//clock
-						high_resolution_clock::time_point t1 = high_resolution_clock::now();
-						sorter->bubbleSort(tenAr->getData(), size);
-						high_resolution_clock::time_point t2 = high_resolution_clock::now();
+						myfile << "**************************bubble Sort time in MicroSec*************************\n";
+						myfile << "*********************************ten Array***********************\n";
+						myfile << "**************************" << size << " elements*********************************\n";
+						for (int i = 0; i < 100; i++) {
+							tenArray<int> *tenAr = new tenArray<int>(size);
+							cout << "time start" << endl;
+							//clock
+							high_resolution_clock::time_point t1 = high_resolution_clock::now();
+							sorter->bubbleSort(tenAr->getData(), size);
+							high_resolution_clock::time_point t2 = high_resolution_clock::now();
 
-						//get time
-						auto duration = duration_cast<microseconds>(t2 - t1).count();
+							//get time
+							auto duration = duration_cast<microseconds>(t2 - t1).count();
 
-						cout << "BS Time: " << duration << "ms" << endl;
+							myfile << duration << endl;
+						}
+						myfile.close();
 
 					}
 
@@ -2242,67 +2268,90 @@ int main() {
 					cout << endl;
 					//ordered array
 					if (arrayType == 1) {
+						myfile << "**************************insertion Sort time in MicroSec*************************\n";
+						myfile << "*********************************ordered Array***********************\n";
+						myfile << "**************************" << size << " elements*********************************\n";
+						for (int i = 0; i < 100; i++) {
+							OrderedArray<int> *ordAr = new OrderedArray<int>(size);
+							cout << "time start" << endl;
+							//clock
+							high_resolution_clock::time_point t1 = high_resolution_clock::now();
+							sorter->insertionSort(ordAr->getData(), size);
+							high_resolution_clock::time_point t2 = high_resolution_clock::now();
 
+							//get time
+							auto duration = duration_cast<microseconds>(t2 - t1).count();
 
-
-						cout << "time start" << endl;
-						//clock
-						high_resolution_clock::time_point t1 = high_resolution_clock::now();
-						sorter->insertionSort(ordAr->getData(), size);
-						high_resolution_clock::time_point t2 = high_resolution_clock::now();
-
-						//get time
-						auto duration = duration_cast<microseconds>(t2 - t1).count();
-
-						cout << "IS Time: " << duration << "ms" << endl;
-
-
+							myfile << duration << endl;
+						}
+						myfile.close();
 					}
+
 					//completely shuffled
 					else if (arrayType == 2) {
 						cout << "shuffled array" << endl;
-						cout << "time start" << endl;
-						//clock
-						high_resolution_clock::time_point t1 = high_resolution_clock::now();
-						sorter->insertionSort(shuffAr->getData(), size);
-						high_resolution_clock::time_point t2 = high_resolution_clock::now();
+						myfile << "**************************insertion Sort time in MicroSec*************************\n";
+						myfile << "*********************************shuffled Array***********************\n";
+						myfile << "**************************" << size << " elements*********************************\n";
+						for (int i = 0; i < 100; i++) {
+							shuffledArray<int> *shuffAr = new shuffledArray<int>(size);
+							cout << "time start" << endl;
+							//clock
+							high_resolution_clock::time_point t1 = high_resolution_clock::now();
+							sorter->insertionSort(shuffAr->getData(), size);
+							high_resolution_clock::time_point t2 = high_resolution_clock::now();
 
-						//get time
-						auto duration = duration_cast<microseconds>(t2 - t1).count();
+							//get time
+							auto duration = duration_cast<microseconds>(t2 - t1).count();
 
-						cout << "IS Time: " << duration << "ms" << endl;
 
+							myfile << duration << endl;
+						}
+						myfile.close();
 					}
 					//reverse ordered
 					else if (arrayType == 3) {
 						cout << "reverse array " << endl;
-						cout << "time start" << endl;
-						//clock
-						high_resolution_clock::time_point t1 = high_resolution_clock::now();
-						sorter->insertionSort(revAr->getData(), size);
-						high_resolution_clock::time_point t2 = high_resolution_clock::now();
+						myfile << "**************************insertion Sort time in MicroSec*************************\n";
+						myfile << "*********************************reversed Array***********************\n";
+						myfile << "**************************" << size << " elements*********************************\n";
+						for (int i = 0; i < 100; i++) {
+							reverseArray<int> *revAr = new reverseArray<int>(size);
+							cout << "time start" << endl;
+							//clock
+							high_resolution_clock::time_point t1 = high_resolution_clock::now();
+							sorter->insertionSort(revAr->getData(), size);
+							high_resolution_clock::time_point t2 = high_resolution_clock::now();
 
-						//get time
-						auto duration = duration_cast<microseconds>(t2 - t1).count();
+							//get time
+							auto duration = duration_cast<microseconds>(t2 - t1).count();
 
-						cout << "IS Time: " << duration << "ms" << endl;
+							myfile << duration << endl;
+						}
+						myfile.close();
 
 					}
 					//shuffled at 10
 					else if (arrayType == 4) {
 						cout << "ten array " << endl;
-						cout << "time start" << endl;
-						//clock
-						high_resolution_clock::time_point t1 = high_resolution_clock::now();
-						sorter->insertionSort(tenAr->getData(), size);
-						high_resolution_clock::time_point t2 = high_resolution_clock::now();
+						myfile << "**************************insertion Sort time in MicroSec*************************\n";
+						myfile << "*********************************ten Array***********************\n";
+						myfile << "**************************" << size << " elements*********************************\n";
+						for (int i = 0; i < 100; i++) {
+							cout << "time start" << endl;
+							tenArray<int> *tenAr = new tenArray<int>(size);
+							//clock
+							high_resolution_clock::time_point t1 = high_resolution_clock::now();
+							sorter->insertionSort(tenAr->getData(), size);
+							high_resolution_clock::time_point t2 = high_resolution_clock::now();
 
-						//get time
-						auto duration = duration_cast<microseconds>(t2 - t1).count();
+							//get time
+							auto duration = duration_cast<microseconds>(t2 - t1).count();
 
-						cout << "SS Time: " << duration << "ms" << endl;
+							myfile << duration << endl;
 
-
+						}
+						myfile.close();
 
 					}
 
@@ -2314,64 +2363,90 @@ int main() {
 					if (arrayType == 1) {
 						cout << endl;
 						//ordered array
-						if (arrayType == 1) {
+						myfile << "**************************selection Sort time in MicroSec*************************\n";
+						myfile << "*********************************ordered Array***********************\n";
+						myfile << "**************************" << size << " elements*********************************\n";
+						for (int i = 0; i < 100; i++) {
+							OrderedArray<int> *ordAr = new OrderedArray<int>(size);
+								cout << "time start" << endl;
+								//clock
+								high_resolution_clock::time_point t1 = high_resolution_clock::now();
+								sorter->selectionSort(ordAr->getData(), size);
+								high_resolution_clock::time_point t2 = high_resolution_clock::now();
 
-							cout << "time start" << endl;
-							//clock
-							high_resolution_clock::time_point t1 = high_resolution_clock::now();
-							sorter->selectionSort(ordAr->getData(), size);
-							high_resolution_clock::time_point t2 = high_resolution_clock::now();
+								//get time
+								auto duration = duration_cast<microseconds>(t2 - t1).count();
 
-							//get time
-							auto duration = duration_cast<microseconds>(t2 - t1).count();
-
-							cout << "SS Time: " << duration << "ms" << endl;
-
+								myfile << duration << endl;
+							}
+							myfile.close();
 
 						}
 						//completely shuffled
 						else if (arrayType == 2) {
 							cout << "shuffled array" << endl;
-							cout << "time start" << endl;
-							//clock
-							high_resolution_clock::time_point t1 = high_resolution_clock::now();
-							sorter->selectionSort(shuffAr->getData(), size);
-							high_resolution_clock::time_point t2 = high_resolution_clock::now();
+							myfile << "**************************selection Sort time in MicroSec*************************\n";
+							myfile << "*********************************shuffled Array***********************\n";
+							myfile << "**************************" << size << " elements*********************************\n";
+							for (int i = 0; i < 100; i++) {
+								cout << "time start" << endl;
+								shuffledArray<int> *shuffAr = new shuffledArray<int>(size);
+								//clock
+								high_resolution_clock::time_point t1 = high_resolution_clock::now();
+								sorter->selectionSort(shuffAr->getData(), size);
+								high_resolution_clock::time_point t2 = high_resolution_clock::now();
 
-							//get time
-							auto duration = duration_cast<microseconds>(t2 - t1).count();
+								//get time
+								auto duration = duration_cast<microseconds>(t2 - t1).count();
 
-							cout << "SS Time: " << duration << "ms" << endl;
+
+								myfile << duration << endl;
+							}
+							myfile.close();
 
 						}
 						//reverse ordered
 						else if (arrayType == 3) {
 							cout << "reverse array " << endl;
-							cout << "time start" << endl;
-							//clock
-							high_resolution_clock::time_point t1 = high_resolution_clock::now();
-							sorter->selectionSort(revAr->getData(), size);
-							high_resolution_clock::time_point t2 = high_resolution_clock::now();
+							myfile << "**************************selection Sort time in MicroSec*************************\n";
+							myfile << "*********************************reversed Array***********************\n";
+							myfile << "**************************" << size << " elements*********************************\n";
+							for (int i = 0; i < 100; i++) {
+								cout << "time start" << endl;
+								reverseArray<int> *revAr = new reverseArray<int>(size);
+								//clock
+								high_resolution_clock::time_point t1 = high_resolution_clock::now();
+								sorter->selectionSort(revAr->getData(), size);
+								high_resolution_clock::time_point t2 = high_resolution_clock::now();
 
-							//get time
-							auto duration = duration_cast<microseconds>(t2 - t1).count();
+								//get time
+								auto duration = duration_cast<microseconds>(t2 - t1).count();
 
-							cout << "SS Time: " << duration << "ms" << endl;
+								myfile << duration << endl;
+							}
+							myfile.close();
 
 						}
 						//shuffled at 10
 						else if (arrayType == 4) {
 							cout << "ten array " << endl;
-							cout << "time start" << endl;
-							//clock
-							high_resolution_clock::time_point t1 = high_resolution_clock::now();
-							sorter->selectionSort(tenAr->getData(), size);
-							high_resolution_clock::time_point t2 = high_resolution_clock::now();
+							myfile << "**************************selection Sort time in MicroSec*************************\n";
+							myfile << "*********************************ten Array***********************\n";
+							myfile << "**************************" << size << " elements*********************************\n";
+							for (int i = 0; i < 100; i++) {
+								cout << "time start" << endl;
+								tenArray<int> *tenAr = new tenArray<int>(size);
+								//clock
+								high_resolution_clock::time_point t1 = high_resolution_clock::now();
+								sorter->selectionSort(tenAr->getData(), size);
+								high_resolution_clock::time_point t2 = high_resolution_clock::now();
 
-							//get time
-							auto duration = duration_cast<microseconds>(t2 - t1).count();
+								//get time
+								auto duration = duration_cast<microseconds>(t2 - t1).count();
 
-							cout << "SS Time: " << duration << "ms" << endl;
+								myfile << duration << endl;
+							}
+							myfile.close();
 
 
 						}
@@ -2387,6 +2462,7 @@ int main() {
 						myfile << "*********************************ordered Array***********************\n";
 						myfile << "**************************" << size << " elements*********************************\n";
 						for (int i = 0; i < 100; i++) {
+							OrderedArray<int> *ordAr = new OrderedArray<int>(size);
 							cout << "time start" << endl;
 							//clock
 							high_resolution_clock::time_point t1 = high_resolution_clock::now();
@@ -2407,6 +2483,7 @@ int main() {
 						myfile << "**************************" << size << " elements*********************************\n";
 						cout << "shuffled array" << endl;
 						for (int i = 0; i < 100; i++) {
+							shuffledArray<int> *shuffAr = new shuffledArray<int>(size);
 							cout << "time start" << endl;
 							//clock
 							high_resolution_clock::time_point t1 = high_resolution_clock::now();
@@ -2427,6 +2504,7 @@ int main() {
 						myfile << "**************************" << size << " elements*********************************\n";
 						cout << "reverse array " << endl;
 						for (int i = 0; i < 100; i++) {
+							reverseArray<int> *revAr = new reverseArray<int>(size);
 							cout << "time start" << endl;
 							//clock
 							high_resolution_clock::time_point t1 = high_resolution_clock::now();
@@ -2448,6 +2526,7 @@ int main() {
 						myfile << "**************************" << size << " elements*********************************\n";
 						cout << "ten array " << endl;
 						for (int i = 0; i < 100; i++) {
+							tenArray<int> *tenAr = new tenArray<int>(size);
 							cout << "time start" << endl;
 							//clock
 							high_resolution_clock::time_point t1 = high_resolution_clock::now();
@@ -2472,65 +2551,91 @@ int main() {
 					//ordered array
 					if (arrayType == 1) {
 						cout << "ordered array" << endl;
+						myfile << "**************************quick Sort time in MicroSec*************************\n";
+						myfile << "*********************************ordered Array***********************\n";
+						myfile << "**************************" << size << " elements*********************************\n";
+						for (int i = 0; i < 100; i++) {
+							OrderedArray<int> *ordAr = new OrderedArray<int>(size);
+							cout << "time start" << endl;
+							//clock
+							high_resolution_clock::time_point t1 = high_resolution_clock::now();
+							qSorter->quicksort(ordAr->getData(), 0, size - 1);
+							high_resolution_clock::time_point t2 = high_resolution_clock::now();
 
-						cout << "time start" << endl;
-						//clock
-						high_resolution_clock::time_point t1 = high_resolution_clock::now();
-						qSorter->quicksort(ordAr->getData(), 0, size - 1);
-						high_resolution_clock::time_point t2 = high_resolution_clock::now();
+							//get time
+							auto duration = duration_cast<microseconds>(t2 - t1).count();
 
-						//get time
-						auto duration = duration_cast<microseconds>(t2 - t1).count();
-
-						cout << "QS Time: " << duration << " ms" << endl;
-
+							myfile << duration << endl;
+						}
+						myfile.close();
 
 					}
 					//completely shuffled
 					else if (arrayType == 2) {
 						cout << "shuffled array:\n" << endl;
-						shuffAr->displayShuffledArray();
-						cout << "time start" << endl;
-						//clock
-						high_resolution_clock::time_point t1 = high_resolution_clock::now();
-						qSorter->quicksort(shuffAr->getData(), 0, size - 1);
-						high_resolution_clock::time_point t2 = high_resolution_clock::now();
+						myfile << "**************************quick Sort time in MicroSec*************************\n";
+						myfile << "*********************************shuffled Array***********************\n";
+						myfile << "**************************" << size << " elements*********************************\n";
+						for (int i = 0; i < 100; i++) {
+							//shuffAr->displayShuffledArray();
+							cout << "time start" << endl;
+							shuffledArray<int> *shuffAr = new shuffledArray<int>(size);
+							//clock
+							high_resolution_clock::time_point t1 = high_resolution_clock::now();
+							qSorter->quicksort(shuffAr->getData(), 0, size - 1);
+							high_resolution_clock::time_point t2 = high_resolution_clock::now();
 
-						//get time
-						auto duration = duration_cast<microseconds>(t2 - t1).count();
-						shuffAr->displayShuffledArray();
+							//get time
+							auto duration = duration_cast<microseconds>(t2 - t1).count();
+							//shuffAr->displayShuffledArray();
 
-						cout << "QS Time: " << duration << "ms" << endl;
+							myfile << duration << endl;
+						}
+						myfile.close();
 
 					}
 					//reverse ordered
 					else if (arrayType == 3) {
 						cout << "reverse array " << endl;
-						cout << "time start" << endl;
-						//clock
-						high_resolution_clock::time_point t1 = high_resolution_clock::now();
-						qSorter->quicksort(revAr->getData(), 0, size - 1);
-						high_resolution_clock::time_point t2 = high_resolution_clock::now();
+						myfile << "**************************quick Sort time in MicroSec*************************\n";
+						myfile << "*********************************reversed Array***********************\n";
+						myfile << "**************************" << size << " elements*********************************\n";
+						for (int i = 0; i < 100; i++) {
+							cout << "time start" << endl;
+							reverseArray<int> *revAr = new reverseArray<int>(size);
+							//clock
+							high_resolution_clock::time_point t1 = high_resolution_clock::now();
+							qSorter->quicksort(revAr->getData(), 0, size - 1);
+							high_resolution_clock::time_point t2 = high_resolution_clock::now();
 
-						//get time
-						auto duration = duration_cast<microseconds>(t2 - t1).count();
+							//get time
+							auto duration = duration_cast<microseconds>(t2 - t1).count();
 
-						cout << "QS Time: " << duration << "ms" << endl;
+							cout << duration << endl;
+						}
+						myfile.close();
 
 					}
 					//shuffled at 10
 					else if (arrayType == 4) {
 						cout << "ten array " << endl;
-						cout << "time start" << endl;
-						//clock
-						high_resolution_clock::time_point t1 = high_resolution_clock::now();
-						qSorter->quicksort(revAr->getData(), 0, size - 1);
-						high_resolution_clock::time_point t2 = high_resolution_clock::now();
+						myfile << "**************************quick Sort time in MicroSec*************************\n";
+						myfile << "*********************************ten Array***********************\n";
+						myfile << "**************************" << size << " elements*********************************\n";
+						for (int i = 0; i < 100; i++) {
+							cout << "time start" << endl;
+							tenArray<int> *tenAr = new tenArray<int>(size);
+							//clock
+							high_resolution_clock::time_point t1 = high_resolution_clock::now();
+							qSorter->quicksort(tenAr->getData(), 0, size - 1);
+							high_resolution_clock::time_point t2 = high_resolution_clock::now();
 
-						//get time
-						auto duration = duration_cast<microseconds>(t2 - t1).count();
+							//get time
+							auto duration = duration_cast<microseconds>(t2 - t1).count();
 
-						cout << "QS Time: " << duration << "ms" << endl;
+							myfile << duration << endl;
+						}
+						myfile.close();
 					}
 					break;
 
@@ -2541,8 +2646,7 @@ int main() {
 					cout << "Please enter one of the valid options..." << endl;
 					}//end switch
 					}
-
-				}//end do 
+ 
 				while (choice != -1);
 
 			}
@@ -2557,6 +2661,7 @@ int main() {
 
 
 	}
+
 
 
 

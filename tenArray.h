@@ -10,7 +10,7 @@ class tenArray{
 
 	public:
 		// constructor for 10 array
-		tenArray(int _size) {
+		tenArray(long long _size) {
 			srand((unsigned)time(NULL));
 			size = _size;
 
@@ -58,7 +58,7 @@ class tenArray{
 	private:
 		// array's data
 		T* myarray;
-		int size = 0;
+		long long size;
 
 		// Swap function used for shuffling the array data
 		void swap(int i, int j){

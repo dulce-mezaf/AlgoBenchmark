@@ -12,7 +12,7 @@ using namespace std;
 template<typename T>
 class shuffledArray {
 public:
-	shuffledArray(int _size) {
+	shuffledArray(long long _size) {
 		size = _size;
 		//allocate memory for this array
 		this->arr = (T*)malloc(sizeof(T) * size);
@@ -43,5 +43,5 @@ public:
 
 private:
 	T* arr;
-	int size = 0;
+	long long size = 0;
 };

@@ -1,7 +1,7 @@
 template<typename T>
 class OrderedArray{
 public:	
-	OrderedArray(int _size) {
+	OrderedArray(long long _size) {
 		size = _size;
 		int val = 0;
 		this->arr = (T*)malloc(sizeof(T) * size); // allocate memory for this array
@@ -32,5 +32,5 @@ public:
 private:
 	// array's data
 	T* arr;
-	int size = 0;
+	long long size = 0;
 };

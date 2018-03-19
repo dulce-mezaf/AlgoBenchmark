@@ -7,7 +7,7 @@ using namespace std;
 template<typename T>
 class reverseArray{
 	public:
-		reverseArray(int _size) {
+		reverseArray(long long _size) {
 			size = _size;
 			int val = 0;
 			this->arr = (T*)malloc(sizeof(T) * size); // allocate memory for this array
@@ -37,5 +37,5 @@ class reverseArray{
 	private:
 		// array's data
 		T* arr;
-		int size = 0;
+		long long size;
 };
